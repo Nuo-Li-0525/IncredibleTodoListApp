@@ -1,24 +1,35 @@
-import { View, Text, TextInput, Button, StyleSheet } from "react-native";
-import React from "react";
+import React, { useState } from "react";
+import { View, TextInput, Button, StyleSheet } from "react-native";
 
-const ToDoForm = () => {
+function ToDoForm({ addTask }) {
+  const [taskText, setTaskText] = useState(""); // Local state for input field
+
+  const handleAddTask = () => {
+    if (taskText.trim()) {
+      addTask(taskText.trim()); // Call addTask passed from App.js
+      setTaskText(""); // Clear input field after adding task
+    }
+  };
+
   return (
-    <View>
-      <View style={styles.form}>
-        <TextInput style={styles.input} placeholder="Add a new task..." />
-        <Button title="Add" />
-      </View>
+    <View style={styles.form}>
+      <TextInput
+        style={styles.input}
+        placeholder="Add a new task..."
+        onChangeText={(text) => setTaskText(text)}
+        value={taskText}
+      />
+      <Button title="Add Task" onPress={handleAddTask} />
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   form: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginHorizontal: 20,
-    marginTop: 20,
+    marginVertical: 10,
   },
   input: {
     flex: 1,
