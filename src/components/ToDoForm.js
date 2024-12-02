@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { View, TextInput, Button, StyleSheet } from "react-native";
 
 function ToDoForm({ addTask }) {
-  const [taskText, setTaskText] = useState(""); // Local state for input field
+  const [taskText, setTaskText] = useState("");
 
   const handleAddTask = () => {
     if (taskText.trim()) {
-      addTask(taskText.trim()); // Call addTask passed from App.js
-      setTaskText(""); // Clear input field after adding task
+      addTask(taskText.trim());
+      setTaskText("");
     }
   };
 
@@ -16,7 +16,7 @@ function ToDoForm({ addTask }) {
       <TextInput
         style={styles.input}
         placeholder="Add a new task..."
-        onChangeText={(text) => setTaskText(text)}
+        onChangeText={setTaskText}
         value={taskText}
       />
       <Button title="Add Task" onPress={handleAddTask} />

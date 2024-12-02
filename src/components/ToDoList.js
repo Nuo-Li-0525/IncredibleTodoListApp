@@ -5,7 +5,6 @@ function ToDoList({ tasks }) {
   return (
     <View>
       <ScrollView>
-        {/* Map through tasks and render each as a list item */}
         {tasks.map((task, index) => (
           <View key={index} style={styles.task}>
             <Text style={styles.taskText}>{task}</Text>
